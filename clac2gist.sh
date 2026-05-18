@@ -41,7 +41,7 @@ echo "Syncing c2cpp directory from CLAC..."
 rsync -avz "${uni}@clac.cs.columbia.edu:~/c2cpp" .
 
 echo "Running 'make clean' in subdirectories..."
-find c2cpp -mindepth 1 -maxdepth 1 -type d | while read -r dir; do
+find c2cpp -mindepth 1 -type d | while read -r dir; do
     if [ -f "$dir/Makefile" ] || [ -f "$dir/makefile" ]; then
         echo "Cleaning $dir..."
         make -C "$dir" clean
@@ -51,6 +51,15 @@ done
 # Remove any .git directories from synced content before flattening
 echo "Removing .git directories from synced content..."
 find c2cpp -name ".git" -type d -exec rm -rf {} +
+
+# Remove any submission directories with 2026 in them from synced content before flattening
+echo "Removing .git directories from synced content..."
+find c2cpp -name "*2026*" -type d -exec rm -rf {} +
+
+# Remove .mbox from synced content before flattening
+echo "Removing .mbox directories from synced content..."
+find c2cpp -name "*.mbox*" -exec rm -rf {} +
+
 
 echo "Flattening directory structure..."
 find c2cpp -mindepth 2 -type f | while read -r file; do
