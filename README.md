@@ -1,4 +1,4 @@
-# clac-to-gist
+# clac2gist
 
 Save your [clac](https://clac.cs.columbia.edu) files directly to a GitHub Gist with one script.
 
@@ -28,6 +28,6 @@ When prompted, use these settings:
 ## Usage
 
 ```bash
-chmod +x clac-to-gist.sh
-./clac-to-gist.sh
+chmod +x clac2gist.sh
+./clac2gist.sh
 ```
